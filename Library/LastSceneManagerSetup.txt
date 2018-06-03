@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/SecurityRoom.unity
-  isLoaded: 1
-  isActive: 1
