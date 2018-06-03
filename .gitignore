@@ -328,3 +328,13 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+Library/EditorInstance.json
+*.dll
+*.mdb
+
+# Unity files
+Library/ScriptAssemblies/
+Library/Collab/
+Library/assetDatabase3
+Temp/
+obj/

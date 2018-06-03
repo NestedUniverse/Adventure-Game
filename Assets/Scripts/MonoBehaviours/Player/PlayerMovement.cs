@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 destinationPosition;
     private readonly int hashSpeedPara = Animator.StringToHash("Speed");
 
-
     private const float stopDistanceProportion = 0.1f;
 
     private void Start()
