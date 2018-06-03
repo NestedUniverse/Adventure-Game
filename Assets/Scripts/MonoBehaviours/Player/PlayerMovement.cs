@@ -25,15 +25,13 @@ public class PlayerMovement : MonoBehaviour {
         inputHoldWait = new WaitForSeconds(inputHoldDelay);
         destinationPosition = transform.position;
 
-
-
+        
     }
 
     private void OnAnimatorMove()
     {
-        agent.velocity = animator.deltaTime / Time.deltaTime;
-
-
+        agent.velocity = animator.deltaPosition / Time.deltaTime;
+        
     }
 
     private void Update()
@@ -48,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
         if (agent.remainingDistance <= agent.stoppingDistance * stopDistanceProportion)
         {
             Stopping(out speed);
-        } else if (agent.remainingDistance <= agent.stoppingDistance) ;
+        } else if (agent.remainingDistance <= agent.stoppingDistance)
         {
             Slowing(out speed, agent.remainingDistance);
         } else if (speed > turnSpeedThreshold)
@@ -56,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
             Moving();
         }
 
-        animator.SetFloat(hashSpeedPara, speed, speedDampTime, Time.deltatime);        
+        animator.SetFloat(hashSpeedPara, speed, speedDampTime, Time.deltaTime);        
     }
 
     private void Stopping(out float speed)
@@ -65,14 +63,14 @@ public class PlayerMovement : MonoBehaviour {
         transform.position = destinationPosition;
         speed = 0f;
     }
-}
 
     private void Slowing(out float speed, float distanceToDestination)
     {
         agent.isStopped = true;
-        transform.position = Vector3.MoveTowards(transform.position, destinationPosition, slowingSpeed);
-
-}
+        transform.position = Vector3.MoveTowards(transform.position, destinationPosition, slowingSpeed * Time.deltaTime);
+        float proportionalDistance = 1f - distanceToDestination / agent.stoppingDistance;
+        speed = Mathf.Lerp(slowingSpeed, 0f, proportionalDistance);
+    }
 
     private void Moving()
     {
