@@ -8,15 +8,17 @@ public class PlayerMovement : MonoBehaviour {
 
     public Animator animator;
     public NavMeshAgent agent;
-    public float inputHoldDelay = 0.5f;
-    public float turnSpeedThreshold = 0.5f;
+    public float turnSmoothing = 0.15f;
     public float speedDampTime = 0.1f;
     public float slowingSpeed = 0.175f;
-
+    public float turnSpeedThreshold = 0.5f;
+    public float inputHoldDelay = 0.5f;
+    
     private WaitForSeconds inputHoldWait;
     private Vector3 destinationPosition;
     private readonly int hashSpeedPara = Animator.StringToHash("Speed");
 
+    private const float navMeshSampleDistance = 4f;
     private const float stopDistanceProportion = 0.1f;
 
     private void Start()
@@ -24,8 +26,6 @@ public class PlayerMovement : MonoBehaviour {
         agent.updateRotation = false;
         inputHoldWait = new WaitForSeconds(inputHoldDelay);
         destinationPosition = transform.position;
-
-        
     }
 
     private void OnAnimatorMove()
@@ -74,7 +74,27 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Moving()
     {
+        Quaternion targetRotation = Quaternion.LookRotation(agent.desiredVelocity);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
+
 
     }
 
+    public void OnGroundClick (BaseEventData data)
+    {
+        PointerEventData pData = (PointerEventData)data;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(pData.pointerCurrentRaycast.worldPosition, out hit, navMeshSampleDistance, NavMesh.AllAreas))
+        {
+            destinationPosition = hit.position;
+        } else
+        {
+            destinationPosition = pData.pointerCurrentRaycast.worldPosition;
+        }
+
+        agent.SetDestination(destinationPosition);
+
+        agent.isStopped = false;
+
+    }
 }
