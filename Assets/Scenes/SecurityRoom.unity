@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000001, guid: f063a860947fdde438b2418b9255bd91,
+  m_LightingDataAsset: {fileID: 112000002, guid: f063a860947fdde438b2418b9255bd91,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -357,33 +357,12 @@ MonoBehaviour:
   message: Hey Frank!  Go on through!
   textColor: {r: 0, g: 1, b: 1, a: 1}
   delay: 0
---- !u!1 &597783157 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1883661293179192, guid: 89667031fe6de0744b886300ec806b2b,
+--- !u!114 &597783163 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114519034413767598, guid: 89667031fe6de0744b886300ec806b2b,
     type: 2}
   m_PrefabInternal: {fileID: 627507686}
---- !u!114 &597783158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 597783157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9328f360cdea7d84c893d73af595eb17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &597783159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 597783157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9328f360cdea7d84c893d73af595eb17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 11500000, guid: 32bd2980460459d4796f6ad62278bb14, type: 3}
 --- !u!1001 &627507686
 Prefab:
   m_ObjectHideFlags: 0
@@ -2548,12 +2527,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: 
-          m_Mode: 1
+        - m_Target: {fileID: 597783163}
+          m_MethodName: OnGroundClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

@@ -67,8 +67,8 @@ public class PlayerMovement : MonoBehaviour {
     private void Slowing(out float speed, float distanceToDestination)
     {
         agent.isStopped = true;
-        transform.position = Vector3.MoveTowards(transform.position, destinationPosition, slowingSpeed * Time.deltaTime);
         float proportionalDistance = 1f - distanceToDestination / agent.stoppingDistance;
+        transform.position = Vector3.MoveTowards(transform.position, destinationPosition, slowingSpeed * Time.deltaTime);
         speed = Mathf.Lerp(slowingSpeed, 0f, proportionalDistance);
     }
 
@@ -76,8 +76,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         Quaternion targetRotation = Quaternion.LookRotation(agent.desiredVelocity);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
-
-
     }
 
     public void OnGroundClick (BaseEventData data)
